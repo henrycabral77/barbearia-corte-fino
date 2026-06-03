@@ -4,7 +4,7 @@
 // PASSO: Cole aqui a URL do seu Google Apps Script depois de criar
 // Veja as instruções no README.md
 // ================================================================
-const SCRIPT_URL = "COLE_AQUI_A_URL_DO_SEU_APPS_SCRIPT";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwWIGxzku20J5fBSVEY0gwlD2HUSpeGc4jkdPtBjzy68-_NCn5HLq1CaVqcnmKReNRk/exec";
 
 // ── Data mínima: hoje ────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
