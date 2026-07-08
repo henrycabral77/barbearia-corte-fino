@@ -5,12 +5,24 @@
 // Veja as instruções no README.md
 // ================================================================
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwWIGxzku20J5fBSVEY0gwlD2HUSpeGc4jkdPtBjzy68-_NCn5HLq1CaVqcnmKReNRk/exec";
+const STORAGE_KEY = "corte-fino-agendamentos";
+
+function salvarAgendamentoLocal(dados) {
+  const agendamentos = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+  agendamentos.unshift({
+    ...dados,
+    id: Date.now().toString(),
+  });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(agendamentos));
+}
 
 // ── Data mínima: hoje ────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
   const dataInput = document.getElementById("data");
-  const hoje = new Date().toISOString().split("T")[0];
-  dataInput.setAttribute("min", hoje);
+  if (dataInput) {
+    const hoje = new Date().toISOString().split("T")[0];
+    dataInput.setAttribute("min", hoje);
+  }
 });
 
 // ── Formulário ───────────────────────────────────────────────────
@@ -31,6 +43,8 @@ document.getElementById("formAgendamento").addEventListener("submit", async func
     obs:       document.getElementById("obs").value.trim() || "—",
     timestamp: new Date().toLocaleString("pt-BR"),
   };
+
+  salvarAgendamentoLocal(dados);
 
   // Loading
   btn.disabled = true;

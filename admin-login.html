@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin | Corte Fino</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="admin-shell">
+    <section class="admin-card">
+      <h1>Área Administrativa</h1>
+      <p>Entre com a senha para visualizar os agendamentos da barbearia.</p>
+      <form class="admin-form" id="adminLoginForm">
+        <label for="usuario">Usuário</label>
+        <input type="text" id="usuario" placeholder="admin" required />
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" placeholder="Digite a senha" required />
+        <div class="admin-actions">
+          <button type="submit" class="admin-btn">Entrar</button>
+          <a href="index.html" class="admin-btn secondary">Voltar</a>
+        </div>
+      </form>
+      <div class="admin-message" id="adminMessage"></div>
+    </section>
+  </main>
+
+  <script>
+    const ADMIN_USER = "admin";
+    const ADMIN_PASS = "cortefino2026";
+
+    document.getElementById("adminLoginForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+      const usuario = document.getElementById("usuario").value.trim();
+      const senha = document.getElementById("senha").value.trim();
+      const message = document.getElementById("adminMessage");
+
+      if (usuario === ADMIN_USER && senha === ADMIN_PASS) {
+        sessionStorage.setItem("admin-auth", "true");
+        window.location.href = "admin.html";
+      } else {
+        message.textContent = "Usuário ou senha inválidos.";
+      }
+    });
+  </script>
+</body>
+</html>

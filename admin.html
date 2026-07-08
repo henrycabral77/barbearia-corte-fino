@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel Admin | Corte Fino</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="admin-shell">
+    <section class="admin-card">
+      <div class="admin-header">
+        <div>
+          <h2>Agendamentos</h2>
+          <p>Lista dos agendamentos recebidos pela barbearia.</p>
+        </div>
+        <a href="index.html" class="admin-btn secondary">Voltar ao site</a>
+      </div>
+      <div id="adminList" class="admin-list"></div>
+    </section>
+  </main>
+
+  <script>
+    const STORAGE_KEY = "corte-fino-agendamentos";
+
+    if (sessionStorage.getItem("admin-auth") !== "true") {
+      window.location.href = "admin-login.html";
+    }
+
+    function renderAgendamentos() {
+      const container = document.getElementById("adminList");
+      const agendamentos = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+
+      if (!agendamentos.length) {
+        container.innerHTML = '<div class="empty-state">Nenhum agendamento encontrado.</div>';
+        return;
+      }
+
+      container.innerHTML = agendamentos.map((item) => `
+        <article class="appointment-card">
+          <strong>${item.nome}</strong>
+          <p><strong>Telefone:</strong> ${item.telefone}</p>
+          <p><strong>Serviço:</strong> ${item.servico}</p>
+          <p><strong>Barbeiro:</strong> ${item.barbeiro || "Sem preferência"}</p>
+          <p><strong>Data:</strong> ${item.data} · <strong>Horário:</strong> ${item.horario}</p>
+          <p><strong>Observações:</strong> ${item.obs}</p>
+          <span><strong>Recebido em:</strong> ${item.timestamp}</span>
+        </article>
+      `).join("");
+    }
+
+    renderAgendamentos();
+  </script>
+</body>
+</html>
