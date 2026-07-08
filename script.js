@@ -4,7 +4,7 @@
 // PASSO: Cole aqui a URL do seu Google Apps Script depois de criar
 // Veja as instruções no README.md
 // ================================================================
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwb0UmY6uMgKiqxMAQXly7zM5BLnnnpV3fFMW6-OjRpvJrvFWigvDaCmkurbyVIoA60/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwa7HgZDLQPTzyA9S-mT_nLZ5eGiKiYRNBfu4_LihCxSo9l8pspFJO1p0Wilqoyloc_/exec";
 const STORAGE_KEY = "corte-fino-agendamentos";
 
 function salvarAgendamentoLocal(dados) {
